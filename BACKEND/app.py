@@ -10,7 +10,10 @@ from routes.chat import chat_bp
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+
+# CORS Configuration for production
+cors_origins = os.getenv("CORS_ORIGINS", "*").split(",")
+CORS(app, origins=cors_origins)
 
 UPLOAD_FOLDER = "uploads"
 MODEL_FOLDER = "models"
@@ -35,4 +38,6 @@ with app.app_context():
     db.create_all()
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    port = int(os.getenv("PORT", 5000))
+    debug = os.getenv("FLASK_ENV", "development") != "production"
+    app.run(host="0.0.0.0", port=port, debug=debug)

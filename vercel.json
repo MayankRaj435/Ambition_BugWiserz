@@ -1,0 +1,14 @@
+{
+    "buildCommand": "cd FRONTEND && npm install && npm run build",
+    "outputDirectory": "FRONTEND/.next",
+    "devCommand": "cd FRONTEND && npm run dev",
+    "installCommand": "cd FRONTEND && npm install",
+    "framework": "nextjs",
+    "regions": [
+        "iad1"
+    ],
+    "env": {
+        "NEXT_PUBLIC_API_URL": "@api_url",
+        "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "@clerk_key"
+    }
+}
